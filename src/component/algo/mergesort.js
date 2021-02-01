@@ -7,7 +7,6 @@ function func(range_of_sort,sequence_of_index)
 }
 export default function getMergeSort(params) {
     var arr=params.slice();
-    console.log("Merge Started",arr);
     let range=[];
     mergeUtil(0,arr.length-1,arr,range);
     return {arr:arr,

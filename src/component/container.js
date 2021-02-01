@@ -16,132 +16,120 @@ import getQuickSortAnime from './animation/quicksort';
 
 function Container()
 {
-    /* Function to set Array */
-    // var [width,setWidth]=useState(2);
-    var width=1.5,ANIM_SPEED=500;
-    function getRandomArray() 
+    function getRandomArray(len=20) 
     {
         let temp=[];
-        for(let i=0;i<10;i++)
+        for(let i=0;i<len;i++)
         temp.push(Math.floor(Math.random()*50)+1);
         return temp;
     }
     var [arr,setArr]=useState(getRandomArray());
+    var [click,setClick]=useState(false);
+    var width=1.5,ANIM_SPEED=100;
 
     function setArrUtil(temp)
     {
         arr=temp;
         setArr(arr);
     }
-    /**
-     * generate random array starts
-     */
+
+
+
+
+
+
+
     function genRandomArray()
     {
-        
         setArrUtil(getRandomArray());
-        // document.querySelector("#sec_array").style.display="none";
-
-
     }
-    /**
-     * generate random array ends
-     */
 
-    /**
-     * Functions for Merge sort starts
-     */
     function MergeSort() {
+        click=true;
+        setClick(click);
         document.getElementsByClassName("barContainer").sec_array.style.display='flex';
-        console.log("Merge",arr);
         let array=getMergeSort(arr);
-        console.log(array);
-        getMergeAnime(arr,array.animation,ANIM_SPEED);
+        let time=getMergeAnime(arr,array.animation,ANIM_SPEED);
         arr=array.arr;
-        // setArrUtil(array.arr);
+        setTimeout(()=>{
+
+        click=false;
+        setClick(click);
+        setArrUtil(arr);
+
+        },time+=ANIM_SPEED);
     }
-
-    /**
-     * Functions for Merge sort ends
-     */
-
-    /**
-     * Functions for Bubble Sort starts
-     */
-    
-
 
     function BubbleSort()
     {
-        console.log("Bubble",arr);
+        click=true;
+        setClick(click);
         let array=getBubbleSort(arr);
-        console.log(array.arr,arr);
-        arr=getBubbleSortAnime(arr.slice(),array.animation,ANIM_SPEED);
+        let time=getBubbleSortAnime(arr.slice(),array.animation,ANIM_SPEED);
+        
+        arr=array.arr;
+        setTimeout(()=>{
+
+        click=false;
+        setClick(click);
+        setArrUtil(arr);
+
+        },time+=ANIM_SPEED);
 
     }
 
-    /**
-     * Functions for Bubble Sort ends
-     */
-
-     
-    /**
-     * Functions for Selection Sort starts
-     */
     function SelectionSort()
     {
-        console.log("Selection",arr);
+        click=true;
+        setClick(click);
         let array=getSelectionSort(arr);
-        console.log(array);
-        getSelectionSortAnime(array.animation,ANIM_SPEED);
+        let time=getSelectionSortAnime(array.animation,arr.length,ANIM_SPEED);
         arr=array.arr;
-        // setArrUtil(array.arr);
+        setTimeout(()=>{
 
+        click=false;
+        setClick(click);
+        setArrUtil(arr);
+
+        },time+=ANIM_SPEED);
     }
-    
-    /**
-     * Functions for Selection Sort ends
-     */
-    
-    /**
-     * Function for Insertion Sort starts
-     */
+
     function InsertionSort()
     {
-        console.log("Insertion",arr);
+        click=true;
+        setClick(click);
         let array=getInsertionSort(arr);
-        console.log(array);
-        getInsertionAnime(array.animation.array,array.animation.temp,ANIM_SPEED)
-        // setArrUtil(array.arr);
+        let time=getInsertionAnime(array.animation.array,array.animation.temp,ANIM_SPEED);
+        arr=array.arr;
+        setTimeout(()=>{
+
+        click=false;
+        setClick(click);
+        setArrUtil(arr);
+
+        },time+=ANIM_SPEED);
 
     }
 
-    /**
-     * Functions for Quick Sort ends
-     */
-    
-    /**
-     * Function for Insertion Sort starts
-     */
     function QuickSort()
     {
-        console.log("Quick",arr);
+        click=true;
+        setClick(click);
         let array=getQuickSort(arr);
-        console.log(array);
-        getQuickSortAnime(array.animation,ANIM_SPEED);
+        let time=getQuickSortAnime(array.animation,ANIM_SPEED);
         arr=array.arr;
-        // setArrUtil(array.arr);
+        setTimeout(()=>{
+
+        click=false;
+        setClick(click);
+        setArrUtil(arr);
+
+        },time+=ANIM_SPEED);
 
     }
 
-    /**
-     * Functions for Quick Sort ends
-     */
 
-
-
-
-
+    console.log('Click',click,arr)
 
 
     
@@ -154,26 +142,34 @@ function Container()
         SelectionSort={SelectionSort}
         InsertionSort={InsertionSort}
         QuickSort={QuickSort}
+        click={click}
         />
 
-        <div className="container">
+        <div className="container_">
             {
                 <div className="barContainer" id="primary_array">
                 {arr.map((value,index)=>{return <Bar
                     key={index}
                     width={width}
                     height={value}
-                    />})}
+                    />})
+                }
+                <Bar height={55}
+                width={0}
+                class="fixer"/>
                 </div>
             }
             <br></br>
             {
                 <div className="barContainer" id="sec_array">
-                {[0,0,0,0,0,0,0,0,0,0].map((value,index)=>{return <Bar
+                {arr.map((value,index)=>{return <Bar
                     key={index}
                     width={width}
-                    height={value}
+                    height={0}
                     />})}
+                    <Bar height={55}
+                    width={0}
+                    class={"fixer"}/>
                 </div>
             }
         </div>

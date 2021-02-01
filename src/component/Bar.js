@@ -3,6 +3,7 @@ import './component.css';
 
 function Bar(params)
 {
+    console.log(params.class,typeof(params.class))
     return (
         <div
         className="Bar">
@@ -17,7 +18,7 @@ function Bar(params)
         }}
         >
         </div>
-        <p style={{color:"white",textAlign:'center'}}>{params.height}</p>
+        <p style={(params.class!=='fixer')?{color:"white",textAlign:'center'}:null} className={params.class}>{(params.height)?params.height:""}</p>
         </div>
     )
 }

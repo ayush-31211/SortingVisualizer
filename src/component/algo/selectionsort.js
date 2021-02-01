@@ -1,4 +1,4 @@
-export default function getBubbleSort(params)
+export default function getSelectionSort(params)
 {
     var arr=params.slice();
     let range=[];

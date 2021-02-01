@@ -1,4 +1,4 @@
-export default function getSelectionSortAnime(array,ANIM_SPEED) {
+export default function getSelectionSortAnime(array,arr_len,ANIM_SPEED) {
     let time=0;
     array=array.slice();
     for(let i=0;i<array.length+1;i++)
@@ -8,14 +8,14 @@ export default function getSelectionSortAnime(array,ANIM_SPEED) {
         if(i===array.length)
         {
             let dom=document.getElementsByClassName('Bar');
-            for(let i=0;i<10;i++)
+            for(let i=0;i<arr_len;i++)
             dom[i].firstChild.style.backgroundColor='white'
             
         }
 
         else if(array[i].length===4){
             let dom=document.getElementsByClassName('Bar');
-            for(let j=array[i][3];j<10;j++)
+            for(let j=array[i][3];j<arr_len;j++)
             dom[j].firstChild.style.backgroundColor='white';
             var [one,two]=array[i];
             dom[one].firstChild.style.backgroundColor='yellow';
@@ -25,7 +25,6 @@ export default function getSelectionSortAnime(array,ANIM_SPEED) {
         {
             let tmp=array[i][0];
             let dom=document.getElementsByClassName('Bar');
-            console.log(dom[0])
             for(let j=0;j<=tmp;j++)
             {
 
@@ -34,7 +33,7 @@ export default function getSelectionSortAnime(array,ANIM_SPEED) {
                 dom[j].lastChild.innerText=array[i][1][j];
             }
             
-            for(let j=tmp+1;j<10;j++)
+            for(let j=tmp+1;j<arr_len;j++)
             {
                 dom[j].firstChild.style.height=`${array[i][1][j]*5}px`;
                 dom[j].lastChild.innerText=array[i][1][j];
@@ -42,5 +41,5 @@ export default function getSelectionSortAnime(array,ANIM_SPEED) {
         }
         },time+=ANIM_SPEED)
     }
-    
+    return time;
 }

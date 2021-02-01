@@ -5,8 +5,6 @@ function getMergeAnimeUtil(color_range,temp_arr,arr,ANIM_SPEED) {
     let n=color_range.length;
     let arr_len=arr[0].length;
     let time=0;
-    // console.log(primary_array,sec_array);
-    // console.log(primary_array[0].firstChild.style)
     for(let i=0;i<=n;i++)
     {
         if(i===n)
@@ -19,13 +17,11 @@ function getMergeAnimeUtil(color_range,temp_arr,arr,ANIM_SPEED) {
             continue;
         }
         setTimeout(()=>{
-            console.log(color_range[i],arr[i],temp_arr[i]);
-            // console.log(i);
             for(let j=0;j<arr_len;j++)
             {
                 primary_array[j].firstChild.style.backgroundColor='white';
-                // console.log(i,arr[i],arr[i][j])
                 primary_array[j].firstChild.style.height=`${arr[i][j]*5}px`;
+                if(arr[i][j]!==0)
                 primary_array[j].lastChild.innerText=arr[i][j];
                 if(j<temp_arr[i].length)
                 {
@@ -41,17 +37,13 @@ function getMergeAnimeUtil(color_range,temp_arr,arr,ANIM_SPEED) {
             }
             for(let j=0;j<color_range[i].length;j++)
             {
-                // console.log(i,color_range[j]);
-                // console.log(i,temp_arr[i],temp_arr[i][j])
-                // for(let k=0;k<color_range[j].length;k++)
                 primary_array[color_range[i][j]].firstChild.style.backgroundColor=(j<Math.floor((color_range[i].length+1)/2))?'red':'yellow';
-                
             }
             
             
         },time+=ANIM_SPEED);
     }
-
+    return time;
 }
 
 function getMergeAnime(array,animation,ANIM_SPEED)
@@ -91,14 +83,8 @@ function getMergeAnime(array,animation,ANIM_SPEED)
                 temp_arr.push(sec_array.slice());
             }
         }
-        console.log(color_range.length,temp_arr.length,arr.length);
     }
 
-    console.log(array,animation);
-    for(let i=0;i<color_range.length;i++)
-    {
-        console.log(color_range[i],temp_arr[i],arr[i]);
-    }
-    getMergeAnimeUtil(color_range,temp_arr,arr,ANIM_SPEED);
+    return getMergeAnimeUtil(color_range,temp_arr,arr,ANIM_SPEED);
 }
 export default getMergeAnime;

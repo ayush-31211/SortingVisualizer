@@ -50,7 +50,6 @@ function quickSort(arr,left,right) {
         }
     }
     if(left===0&&right===arr.length-1)
-    console.log(color_range,compared,bound,array,positioned);
     return arr;
 }
 function getQuickSort(params)

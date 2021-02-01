@@ -1,21 +1,20 @@
 function getInsertionAnime(array,color,ANIM_SPEED)
 {
     let dom=document.getElementsByClassName('Bar');
-    console.log(dom);
     let time=0;
-
+    let arr_len=array[0].length;
     for(let i=0;i<=color.length;i++)
     {
         if(i===color.length)
         {
             setTimeout(()=>{
-                for(let i=0;i<10;i++)
+                for(let i=0;i<arr_len;i++)
                 dom[i].firstChild.style.backgroundColor='white';
             },time+=ANIM_SPEED);
             continue;
         }
         setTimeout(()=>{
-        for(let j=0;j<10;j++)
+        for(let j=0;j<arr_len;j++)
         {
             if(j<=color[i][0])
             dom[j].firstChild.style.backgroundColor='yellow';
@@ -29,6 +28,7 @@ function getInsertionAnime(array,color,ANIM_SPEED)
 
         },time+=ANIM_SPEED);
     }
+    return time;
 
 
 }

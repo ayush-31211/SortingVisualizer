@@ -2,7 +2,6 @@ function getInsertionSort(params) {
     var arr=params.slice();
     var temp=[];
     var array=[];
-    console.log("Temp Initial",temp,arr);
     for(let i=0;i<arr.length;i++)
     {
         for(let j=i;j>0;j--)
