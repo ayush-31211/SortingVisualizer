@@ -1,4 +1,5 @@
-export default function getSelectionSortAnime(array) {
+export default function getSelectionSortAnime(array,ANIM_SPEED) {
+    let time=0;
     array=array.slice();
     for(let i=0;i<array.length+1;i++)
     {
@@ -24,6 +25,7 @@ export default function getSelectionSortAnime(array) {
         {
             let tmp=array[i][0];
             let dom=document.getElementsByClassName('Bar');
+            console.log(dom[0])
             for(let j=0;j<=tmp;j++)
             {
 
@@ -38,7 +40,7 @@ export default function getSelectionSortAnime(array) {
                 dom[j].lastChild.innerText=array[i][1][j];
             }
         }
-        },i*100)
+        },time+=ANIM_SPEED)
     }
     
 }

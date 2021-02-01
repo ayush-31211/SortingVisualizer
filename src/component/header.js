@@ -5,7 +5,7 @@ import logo from '../images/logo.png'
 function Header(props)
 {
     return (
-        <Navbar variant="dark">
+        <Navbar variant="dark" id='navbar'>
             <Navbar.Brand href="#home">
             <img
                 alt=""

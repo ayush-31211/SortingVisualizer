@@ -1,5 +1,6 @@
-function getBubbleSortAnimeUtil(array,colored)
+function getBubbleSortAnimeUtil(array,colored,ANIM_SPEED)
     {
+        let time=0;
         console.log(array,colored);
         for(let j=0;j<array.length+1;j++)
         {
@@ -15,8 +16,7 @@ function getBubbleSortAnimeUtil(array,colored)
                     dom[i].lastChild.innerText=temp[i];
                 }
                 // dom[j].firstChild.style.backgroundColor='red';
-                dom[one].firstChild.style.backgroundColor='red';
-                dom[two].firstChild.style.backgroundColor='red';
+                dom[one].firstChild.style.backgroundColor=dom[two].firstChild.style.backgroundColor=(colored[j][2])?'yellow':'blue';
             }
             else
             {
@@ -27,27 +27,27 @@ function getBubbleSortAnimeUtil(array,colored)
                 }
                 // setArrUtil(array[j-1])
             }
-            },j*100)
+            },time+=ANIM_SPEED)
         }
     }
-function getBubbleSortAnime(array,animation)
+function getBubbleSortAnime(array,animation,ANIM_SPEED)
 {
     var temp=array.slice();
     var arr=[],colored=[];
     for(let i=0;i<animation.length;i++)
     {
         arr.push(temp.slice());
-        colored.push([animation[i][0],animation[i][1]]);
+        colored.push([animation[i][0],animation[i][1],(!animation[i][2])]);
         if(animation[i][2])
         {
             let tmp=temp[animation[i][0]];
             temp[animation[i][0]]=temp[animation[i][1]];
             temp[animation[i][1]]=tmp;
             arr.push(temp.slice());
-            colored.push([animation[i][0],animation[i][1]]);
+            colored.push([animation[i][0],animation[i][1],true]);
         }        
     }
-    getBubbleSortAnimeUtil(arr,colored);
+    getBubbleSortAnimeUtil(arr,colored,ANIM_SPEED);
     return arr[arr.length-1];
     
 }

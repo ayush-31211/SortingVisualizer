@@ -1,4 +1,4 @@
-#container {
+.container {
   margin: 2% auto;
   width: fit-content;
   display: flex;
@@ -6,6 +6,7 @@
   align-items: baseline;
   border: 2px solid black;
   width: 80vw;
+  flex-direction: column;
   height: 80vh;
 }
 .Bar {
@@ -16,4 +17,7 @@
   display: flex;
   align-items: baseline;
   margin: auto;
+}
+#sec_array {
+  display: none;
 }

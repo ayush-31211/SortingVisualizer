@@ -8,14 +8,17 @@ import getQuickSort from "./algo/quicksort";
 import Bar from "./Bar";
 import getBubbleSortAnime from './animation/bubblesort';
 import getSelectionSortAnime from './animation/selectionsort';
+import getMergeAnime from './animation/mergesort';
+import getInsertionAnime from './animation/insertionsort';
+import getQuickSortAnime from './animation/quicksort';
 
 
 
 function Container()
 {
     /* Function to set Array */
-    var [width,setWidth]=useState(2);
-    
+    // var [width,setWidth]=useState(2);
+    var width=1.5,ANIM_SPEED=500;
     function getRandomArray() 
     {
         let temp=[];
@@ -37,6 +40,9 @@ function Container()
     {
         
         setArrUtil(getRandomArray());
+        // document.querySelector("#sec_array").style.display="none";
+
+
     }
     /**
      * generate random array ends
@@ -46,10 +52,13 @@ function Container()
      * Functions for Merge sort starts
      */
     function MergeSort() {
+        document.getElementsByClassName("barContainer").sec_array.style.display='flex';
         console.log("Merge",arr);
         let array=getMergeSort(arr);
         console.log(array);
-        setArrUtil(array.arr);
+        getMergeAnime(arr,array.animation,ANIM_SPEED);
+        arr=array.arr;
+        // setArrUtil(array.arr);
     }
 
     /**
@@ -67,7 +76,7 @@ function Container()
         console.log("Bubble",arr);
         let array=getBubbleSort(arr);
         console.log(array.arr,arr);
-        arr=getBubbleSortAnime(arr.slice(),array.animation);
+        arr=getBubbleSortAnime(arr.slice(),array.animation,ANIM_SPEED);
 
     }
 
@@ -84,7 +93,7 @@ function Container()
         console.log("Selection",arr);
         let array=getSelectionSort(arr);
         console.log(array);
-        getSelectionSortAnime(array.animation);
+        getSelectionSortAnime(array.animation,ANIM_SPEED);
         arr=array.arr;
         // setArrUtil(array.arr);
 
@@ -102,7 +111,8 @@ function Container()
         console.log("Insertion",arr);
         let array=getInsertionSort(arr);
         console.log(array);
-        setArrUtil(array.arr);
+        getInsertionAnime(array.animation.array,array.animation.temp,ANIM_SPEED)
+        // setArrUtil(array.arr);
 
     }
 
@@ -118,7 +128,9 @@ function Container()
         console.log("Quick",arr);
         let array=getQuickSort(arr);
         console.log(array);
-        setArrUtil(array);
+        getQuickSortAnime(array.animation,ANIM_SPEED);
+        arr=array.arr;
+        // setArrUtil(array.arr);
 
     }
 
@@ -144,14 +156,9 @@ function Container()
         QuickSort={QuickSort}
         />
 
-        <div id="container">
-            {/* <ul>
-            {arr.map((value,index) => {
-            return <li key={index} style={{color:"white"}}>{value}</li>;
-            })}
-            </ul> */}
+        <div className="container">
             {
-                <div className="barContainer">
+                <div className="barContainer" id="primary_array">
                 {arr.map((value,index)=>{return <Bar
                     key={index}
                     width={width}
@@ -159,7 +166,19 @@ function Container()
                     />})}
                 </div>
             }
+            <br></br>
+            {
+                <div className="barContainer" id="sec_array">
+                {[0,0,0,0,0,0,0,0,0,0].map((value,index)=>{return <Bar
+                    key={index}
+                    width={width}
+                    height={value}
+                    />})}
+                </div>
+            }
         </div>
+        
+
         </>
     );
 }
