@@ -25,7 +25,7 @@ function Container()
     }
     var [arr,setArr]=useState(getRandomArray());
     var [click,setClick]=useState(false);
-    var width=1.5,ANIM_SPEED=100;
+    var width=1.5,ANIM_SPEED=500;
 
     function setArrUtil(temp)
     {
